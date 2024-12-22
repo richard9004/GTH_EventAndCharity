@@ -1,0 +1,197 @@
+<section class="bg-light py-5">
+    <div class="container px-5">
+      <div class="row gx-5 justify-content-center">
+        <div class="col-xxl-8 col-lg-10 col-md-10">
+  
+          <!-- Sign Up Form Card -->
+          <div class="card shadow-sm mb-4 p-4" id="userRegistrationDiv">
+            <div [hidden]="!errorMessage" id="errorDiv" class="alert alert-danger mt-4" role="alert">
+              {{ errorMessage }}
+            </div>
+            
+            <h2 class="display-6 text-center">Register</h2>
+            <p class="lead mb-4 text-center">Sign up to GivingToHelp</p>
+            <form [formGroup]="signUpForm">
+  
+              <!-- Two Column Layout (Left Side & Right Side) -->
+              <div class="row">
+                <!-- Left Side Column -->
+                <div class="col-md-6">
+                  <!-- First Name Field -->
+                  <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name*</label>
+                    <input id="firstName" formControlName="firstName" type="text" class="form-control" placeholder="Enter your first name" />
+                    <div *ngIf="signUpForm.controls['firstName'].touched && signUpForm.controls['firstName'].errors?.['required']">
+                      <span style="color:red">First name is required</span>
+                    </div>
+                  </div>
+  
+                  <!-- Last Name Field -->
+                  <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name*</label>
+                    <input id="lastName" formControlName="lastName" type="text" class="form-control" placeholder="Enter your last name" />
+                    <div *ngIf="signUpForm.controls['lastName'].touched && signUpForm.controls['lastName'].errors?.['required']">
+                      <span style="color:red">Last name is required</span>
+                    </div>
+                  </div>
+  
+                  <!-- Preferred Name Field -->
+                  <div class="mb-3">
+                    <label for="preferredName" class="form-label">Preferred Name*</label>
+                    <input id="preferredName" formControlName="preferredName" type="text" class="form-control" placeholder="Enter your preferred name" />
+                    <div *ngIf="signUpForm.controls['preferredName'].touched && signUpForm.controls['preferredName'].errors?.['required']">
+                      <span style="color:red">Preferred name is required</span>
+                    </div>
+                  </div>
+  
+                  <!-- Email Field -->
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email*</label>
+                    <input id="email" formControlName="email" type="email" class="form-control" placeholder="Enter your email" />
+                    <div *ngIf="signUpForm.controls['email'].touched && signUpForm.controls['email'].errors?.['required']">
+                      <span style="color:red">Email is required</span>
+                    </div>
+                    <div *ngIf="signUpForm.controls['email'].touched && signUpForm.controls['email'].errors?.['email']">
+                      <span style="color:red">Please enter a valid email</span>
+                    </div>
+                  </div>
+  
+                  <!-- Password Field -->
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password*</label>
+                    <input id="password" formControlName="password" type="password" class="form-control" placeholder="Create a password" />
+                    <div *ngIf="signUpForm.controls['password'].touched && signUpForm.controls['password'].errors?.['required']">
+                      <span style="color:red">Password is required</span>
+                    </div>
+                  </div>
+  
+                </div> <!-- End Left Side Column -->
+  
+                <!-- Right Side Column -->
+                <div class="col-md-6">
+                  <!-- Confirm Password Field -->
+                  <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password*</label>
+                    <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control" placeholder="Confirm your password" />
+                    <div *ngIf="signUpForm.controls['confirmPassword'].touched && signUpForm.controls['confirmPassword'].errors?.['required']">
+                      <span style="color:red">Confirm password is required</span>
+                    </div>
+                  </div>
+  
+                  <!-- Phone No Field -->
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Phone No</label>
+                    <input id="phone" formControlName="phone" type="text" class="form-control" placeholder="Enter your phone number" />
+                  </div>
+  
+                  <!-- Street Address Field -->
+                  <div class="mb-3">
+                    <label for="streetAddress" class="form-label">Street Address</label>
+                    <input id="streetAddress" formControlName="streetAddress" type="text" class="form-control" placeholder="Enter your street address" />
+                  </div>
+  
+                  <!-- Suburb Field -->
+                  <div class="mb-3">
+                    <label for="suburb" class="form-label">Suburb</label>
+                    <input id="suburb" formControlName="suburb" type="text" class="form-control" placeholder="Enter your suburb" />
+                  </div>
+  
+                  <!-- City Field -->
+                  <div class="mb-3">
+                    <label for="city" class="form-label">City</label>
+                    <input id="city" formControlName="city" type="text" class="form-control" placeholder="Enter your city" />
+                  </div>
+  
+                  <!-- Postcode Field -->
+                  <div class="mb-3">
+                    <label for="postcode" class="form-label">Postcode</label>
+                    <input id="postcode" formControlName="postcode" type="text" class="form-control" placeholder="Enter your postcode" />
+                  </div>
+  
+                  <!-- Country Field -->
+                  <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <select id="country" formControlName="country" class="form-control">
+                      <option value="New Zealand">New Zealand</option>
+                      <!-- Add other countries if needed -->
+                    </select>
+                  </div>
+  
+                  <!-- Birth Date Field -->
+                  <div class="mb-3">
+                    <label for="birthDate" class="form-label">Birth Date</label>
+                    <input id="birthDate" formControlName="birthDate" type="date" class="form-control" />
+                  </div>
+  
+                  <!-- Profile Image Field -->
+                  <div class="mb-3">
+                    <label for="profileImage" class="form-label">Profile Image (Max size 500kb)</label>
+                    <input id="profileImage" formControlName="profileImage"  (change)="onProfileImageSelected($event)" type="file" class="form-control" accept="image/*" />
+                  </div>
+
+                    <!-- Validation Error Messages -->
+  <div *ngIf="signUpForm.get('profileImage')?.touched && signUpForm.get('profileImage')?.invalid">
+    <small class="text-danger" *ngIf="signUpForm.get('profileImage')?.hasError('required')">
+      Profile Image is required.
+    </small>
+    <small class="text-danger" *ngIf="signUpForm.get('profileImage')?.hasError('maxSize')">
+      File size exceeds 500KB.
+    </small>
+  </div>
+
+  <!-- Logo Preview -->
+  <div *ngIf="profileImagePreview">
+    <p class="mt-2">Preview:</p>
+    <img [src]="profileImagePreview" alt="Profile Preview" class="img-thumbnail" style="max-width: 150px; max-height: 150px;" />
+  </div>
+                </div> <!-- End Right Side Column -->
+              </div> <!-- End Two Column Layout -->
+  
+              <!-- Terms and Conditions Checkbox -->
+              <div class="mb-3">
+                <div class="form-check">
+                  <input id="terms" formControlName="terms" type="checkbox" class="form-check-input" />
+                  <label for="terms" class="form-check-label">
+                    I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a>
+                  </label>
+                </div>
+              </div>
+  
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-outline-primary w-100 mt-4" (click)="signup()">Sign Up</button>
+  
+              <!-- Link to Login -->
+              <div class="text-center mt-3">
+                <p>Already have an account? <a routerLink="/login">Login</a></p>
+              </div>
+  
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal for Terms and Conditions -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Terms and Conditions:</strong></p>
+          <p>Here you can add the full text of the Terms and Conditions. You can explain how the user is agreeing to these terms by signing up for your platform. This content can be very long and formatted with headings, paragraphs, lists, etc.</p>
+          
+          <p>Some more terms and conditions...</p>
+  
+          <!-- You can add as much text as needed here -->
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

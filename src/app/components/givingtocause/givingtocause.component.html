@@ -1,0 +1,152 @@
+
+
+
+  <section class="bg-light py-5">
+    <div class="container px-5">
+      <div class="row gx-5 justify-content-center">
+        <div class="col-xxl-12">
+          <div class="text-center my-5">
+            <h2 class="display-5 fw-bolder"><span class="d-inline">Events Listing</span></h2>
+            <p class="lead mb-4">Explore exciting events happening near you</p>
+          </div>
+
+            <!-- Search Box as a Card -->
+            <div class="card shadow-sm mb-4 p-4">
+                <h5 class="card-title text-center mb-4">Search Fundraisers</h5>
+                <form id="searchForm" onsubmit="searchFundraisers(event)">
+                  <div class="row mb-3 g-2">
+                    <!-- Event Category -->
+                    <div class="col-md-2">
+                      <select id="eventCategory" class="form-control">
+                        <option value="">Event Category</option>
+                        <option value="sports">Sports</option>
+                        <option value="music">Music</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="faith">Faith</option>
+                        <option value="cultural">Cultural</option>
+                      </select>
+                    </div>
+    
+                 
+    
+                    <!-- Event Name -->
+                    <div class="col-md-2">
+                      <input type="text" id="eventName" class="form-control" placeholder="Event Name">
+                    </div>
+    
+                    <!-- Individual Name -->
+                    <div class="col-md-2">
+                      <input type="text" id="location" class="form-control" placeholder="Location">
+                    </div>
+    
+                    <!-- When Dropdown -->
+                    <div class="col-md-2">
+                      <select id="when" class="form-control">
+                        <option value="">When?</option>
+                        <option value="today">Today</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="thisWeek">This Week</option>
+                        <option value="thisWeekend">This Weekend</option>
+                        <option value="nextWeek">Next Week</option>
+                        <option value="nextMonth">Next Month</option>
+                      </select>
+                    </div>
+    
+                   <!-- Search and Reset Button Column -->
+  <div class="col-md-2 d-flex justify-content-between">
+      <!-- Search Button -->
+      <button type="submit" class="btn btn-outline-primary flex-fill me-2">Search</button>
+      
+      <!-- Reset Button -->
+      <button type="button" class="btn btn-outline-secondary flex-fill" onclick="resetForm()">Reset</button>
+    </div>
+    
+                  
+                  </div>
+                </form>
+              </div>
+        </div>
+      </div>
+  
+      <!-- Event Cards Section -->
+      <div class="row g-4">
+        <!-- Event Card 1 -->
+        <div class="col-lg-6">
+          <div class="card shadow-sm h-100" style="border: 1px solid #ddd; border-radius: 8px;">
+            <!-- Event Image -->
+            <img src="https://www.givingtohelp.org/assets/image_uploads/event_image/1663764536_event_banner.png" 
+                 class="card-img-top" 
+                 alt="ZANZ NextGen Group to attend the 8th World Zoroastrian Youth Congress" 
+                 style="height: 200px; object-fit: cover; border-bottom: 1px solid #ddd;">
+  
+            <!-- Card Body -->
+            <div class="card-body d-flex flex-column">
+              <!-- Event Title -->
+              <h5 class="card-title fw-bold mb-2">
+                ZANZ NextGen Group to attend the 8th World Zoroastrian Youth Congress
+              </h5>
+  
+              <!-- Event Location and Date -->
+              <p class="card-text text-muted mb-2" style="font-size: 0.9rem;">
+                This event is happening at <strong>Auckland Town Hall</strong> on <strong>Fri Jul 21, 2023</strong>.
+              </p>
+  
+              <!-- Event Start Time -->
+              <p class="card-text" style="font-size: 0.85rem; color: #777;">
+                <small>Event starts at: 08:00 AM</small>
+              </p>
+  
+              <!-- View Event Button -->
+              <div class="mt-auto text-end">
+                <a href="https://www.givingtohelp.org/index.php/frontend/events/event_details/88" 
+                   class="btn btn-outline-primary btn-sm rounded-pill px-4">
+                  View Event
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Event Card 2 -->
+        <div class="col-lg-6">
+          <div class="card shadow-sm h-100" style="border: 1px solid #ddd; border-radius: 8px;">
+            <!-- Event Image -->
+            <img src="https://via.placeholder.com/600x200" 
+                 class="card-img-top" 
+                 alt="Community Gathering and Charity Drive" 
+                 style="height: 200px; object-fit: cover; border-bottom: 1px solid #ddd;">
+  
+            <!-- Card Body -->
+            <div class="card-body d-flex flex-column">
+              <!-- Event Title -->
+              <h5 class="card-title fw-bold mb-2">
+                Community Gathering and Charity Drive
+              </h5>
+  
+              <!-- Event Location and Date -->
+              <p class="card-text text-muted mb-2" style="font-size: 0.9rem;">
+                This event is happening at <strong>Central Park</strong> on <strong>Sat Aug 15, 2023</strong>.
+              </p>
+  
+              <!-- Event Start Time -->
+              <p class="card-text" style="font-size: 0.85rem; color: #777;">
+                <small>Event starts at: 10:00 AM</small>
+              </p>
+  
+              <!-- View Event Button -->
+              <div class="mt-auto text-end">
+                <a href="https://example.com/events/community-drive" 
+                   class="btn btn-outline-primary btn-sm rounded-pill px-4">
+                  View Event
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Add more cards as needed -->
+  
+      </div>
+    </div>
+  </section>
+  

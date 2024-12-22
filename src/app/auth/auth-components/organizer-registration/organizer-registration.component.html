@@ -1,0 +1,576 @@
+<section class="bg-light py-5">
+  <div class="container">
+     <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Organization Registration</h2>
+        <p class="lead text-center mb-4">
+           To register with GivingToHelp, complete and submit the form below.
+        </p>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="row g-3">
+           <!-- Organization Details -->
+           <div class="col-12">
+              <h5 class="mb-3">Organization Details</h5>
+              <div class="mb-3">
+                 <label for="orgName" class="form-label">Organization Name<span class="text-danger">*</span></label>
+                 <input id="orgName" formControlName="orgName" type="text" class="form-control" placeholder="Enter organization name" required />
+                 <div *ngIf="registrationForm.get('orgName')?.invalid && registrationForm.get('orgName')?.touched" class="text-danger">
+                    Organization Name is required.
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-6 mb-3">
+                    <label for="irdNumber" class="form-label">IRD Number</label>
+                    <input id="irdNumber" formControlName="irdNumber" type="text" class="form-control" placeholder="Enter IRD number" />
+                 </div>
+                 <div class="col-md-6 mb-3">
+                    <label for="orgType" class="form-label">Organization Type<span class="text-danger">*</span></label>
+                    <select id="orgType" formControlName="orgType" class="form-select" required>
+                       <option value="" disabled selected>--Select--</option>
+                       <option value="nonprofit">Nonprofit</option>
+                       <option value="charity">Charity</option>
+                       <option value="socialEnterprise">Social Enterprise</option>
+                    </select>
+                    <div *ngIf="registrationForm.get('orgType')?.invalid && registrationForm.get('orgType')?.touched" class="text-danger">
+                       Organization Type is required.
+                    </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-6 mb-3">
+                    <label for="charityRegistration" class="form-label">Registered with Charities Commission?</label>
+                    <select id="charityRegistration" formControlName="charityRegistration" class="form-select">
+                       <option value="" disabled selected>-- Please Select --</option>
+                       <option value="yes">Yes</option>
+                       <option value="no">No</option>
+                    </select>
+                 </div>
+                 <div class="col-md-6 mb-3">
+                    <label for="doneeStatus" class="form-label">Approved for Donee Status?</label>
+                    <select id="doneeStatus" formControlName="doneeStatus" class="form-select">
+                       <option value="no">No</option>
+                       <option value="yes">Yes</option>
+                    </select>
+                 </div>
+              </div>
+              <div class="mb-3">
+                 <label for="preferredOrgName" class="form-label">Preferred Organization Name<span class="text-danger">*</span></label>
+                 <input id="preferredOrgName" formControlName="preferredOrgName" type="text" class="form-control" placeholder="Enter preferred name" required />
+                 <div *ngIf="registrationForm.get('preferredOrgName')?.invalid && registrationForm.get('preferredOrgName')?.touched" class="text-danger">
+                    Preferred Organization Type is required.
+                 </div>
+              </div>
+              <div class="mb-3">
+                 <label for="overview" class="form-label">Overview</label>
+                 <textarea id="overview" formControlName="overview" class="form-control" rows="4" placeholder="Enter a brief overview"></textarea>
+              </div>
+              <div class="mb-3">
+                 <label class="form-label">Choose the cause areas your organization is involved in:</label>
+                 <div class="d-flex flex-wrap gap-3" formGroupName="causeAreas" >
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="agedCare" type="checkbox" id="causeAgedCare" />
+                       <label class="form-check-label" for="causeAgedCare">Aged Care</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="aids" type="checkbox" id="causeAIDs" />
+                       <label class="form-check-label" for="causeAIDs">AIDS</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="babies" type="checkbox" id="causeBabies" />
+                       <label class="form-check-label" for="causeBabies">Babies</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="cancer" type="checkbox" id="causeCancer" />
+                       <label class="form-check-label" for="causeCancer">Cancer</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="youth" type="checkbox" id="causeYouth" />
+                       <label class="form-check-label" for="causeYouth">Youth</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="sports" type="checkbox" id="causeSports" />
+                       <label class="form-check-label" for="causeSports">Sports</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="foodRescue" type="checkbox" id="causeFoodRescue" />
+                       <label class="form-check-label" for="causeFoodRescue">Food Rescue</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="women" type="checkbox" id="causeWomen" />
+                       <label class="form-check-label" for="causeWomen">Women</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="school" type="checkbox" id="causeSchool" />
+                       <label class="form-check-label" for="causeSchool">School</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="humanRights" type="checkbox" id="causeHumanRights" />
+                       <label class="form-check-label" for="causeHumanRights">Human Rights</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="protection" type="checkbox" id="causeProtection" />
+                       <label class="form-check-label" for="causeProtection">Protection</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="drugsAlcohol" type="checkbox" id="causeDrugsAlcohol" />
+                       <label class="form-check-label" for="causeDrugsAlcohol">Drugs & Alcohol</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="health" type="checkbox" id="causeHealth" />
+                       <label class="form-check-label" for="causeHealth">Health</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="education" type="checkbox" id="causeEducation" />
+                       <label class="form-check-label" for="causeEducation">Education</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="animalWelfare" type="checkbox" id="causeAnimalWelfare" />
+                       <label class="form-check-label" for="causeAnimalWelfare">Animal Welfare</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="religious" type="checkbox" id="causeReligious" />
+                       <label class="form-check-label" for="causeReligious">Religious</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="cultural" type="checkbox" id="causeCultural" />
+                       <label class="form-check-label" for="causeCultural">Cultural</label>
+                    </div>
+                    <div class="form-check flex-shrink-0">
+                       <input class="form-check-input" formControlName="ethicActivities" type="checkbox" id="causeEthicActivities" />
+                       <label class="form-check-label" for="causeEthicActivities">Ethic Activities</label>
+                    </div>
+                 </div>
+              </div>
+            <!-- Logo -->
+<div class="mb-3">
+  <label for="logo" class="form-label">
+    Logo<span class="text-danger">*</span> (Max size 500KB)
+  </label>
+  <input
+    id="logo"
+    formControlName="logo"
+    type="file"
+    class="form-control"
+    accept="image/*"
+    (change)="onLogoSelected($event)"
+    required
+  />
+  <!-- Validation Error Messages -->
+  <div *ngIf="registrationForm.get('logo')?.touched && registrationForm.get('logo')?.invalid">
+    <small class="text-danger" *ngIf="registrationForm.get('logo')?.hasError('required')">
+      Logo is required.
+    </small>
+    <small class="text-danger" *ngIf="registrationForm.get('logo')?.hasError('maxSize')">
+      File size exceeds 500KB.
+    </small>
+  </div>
+
+  <!-- Logo Preview -->
+  <div *ngIf="logoPreview">
+    <p class="mt-2">Preview:</p>
+    <img [src]="logoPreview" alt="Logo Preview" class="img-thumbnail" style="max-width: 150px; max-height: 150px;" />
+  </div>
+</div>
+           </div>
+           <!-- Registered Address -->
+           <div class="col-12">
+              <h5 class="mb-3">Registered Address</h5>
+              <div class="row">
+                 <div class="col-md-6 mb-3">
+                    <label for="streetAddress" class="form-label">Street Address<span class="text-danger">*</span></label>
+                    <input
+                       id="streetAddress"
+                       formControlName="streetAddress"
+                       type="text"
+                       class="form-control"
+                       placeholder="Enter street address"
+                       />
+                    <div *ngIf="registrationForm.get('streetAddress')?.touched && registrationForm.get('streetAddress')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('streetAddress')?.errors?.['required']">
+                       Street Address is required.
+                       </small>
+                    </div>
+                 </div>
+                 <div class="col-md-6 mb-3">
+                    <label for="suburb" class="form-label">Suburb<span class="text-danger">*</span></label>
+                    <input
+                       id="suburb"
+                       formControlName="suburb"
+                       type="text"
+                       class="form-control"
+                       placeholder="Enter suburb"
+                       />
+                    <div *ngIf="registrationForm.get('suburb')?.touched && registrationForm.get('suburb')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('suburb')?.errors?.['required']">
+                       Suburb is required.
+                       </small>
+                    </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-6 mb-3">
+                    <label for="city" class="form-label">City<span class="text-danger">*</span></label>
+                    <input
+                       id="city"
+                       formControlName="city"
+                       type="text"
+                       class="form-control"
+                       placeholder="Enter city"
+                       />
+                    <div *ngIf="registrationForm.get('city')?.touched && registrationForm.get('city')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('city')?.errors?.['required']">
+                       City is required.
+                       </small>
+                    </div>
+                 </div>
+                 <div class="col-md-6 mb-3">
+                    <label for="postalCode" class="form-label">Postal Code<span class="text-danger">*</span></label>
+                    <input
+                       id="postalCode"
+                       formControlName="postalCode"
+                       type="text"
+                       class="form-control"
+                       placeholder="Enter postal code"
+                       />
+                    <div *ngIf="registrationForm.get('postalCode')?.touched && registrationForm.get('postalCode')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('postalCode')?.errors?.['required']">
+                       Postal Code is required.
+                       </small>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-sm-6 mb-3">
+                 <label for="country" class="form-label">Country<span class="text-danger">*</span></label>
+                 <select
+                    id="country"
+                    formControlName="country"
+                    class="form-select"
+                    >
+                    <option value="New Zealand">New Zealand</option>
+                 </select>
+                 <div *ngIf="registrationForm.get('country')?.touched && registrationForm.get('country')?.invalid">
+                    <small class="text-danger" *ngIf="registrationForm.get('country')?.errors?.['required']">
+                    Country is required.
+                    </small>
+                 </div>
+              </div>
+           </div>
+           <!-- Administrative Contact -->
+           <div class="col-12">
+              <h5 class="mb-3">Administrative Contact</h5>
+              <div class="row">
+                 <div class="col-md-6 mb-3">
+                    <label for="adminPosition" class="form-label">Position Title<span class="text-danger">*</span></label>
+                    <input
+                       id="adminPosition"
+                       type="text"
+                       class="form-control"
+                       placeholder="Enter position title"
+                       formControlName="adminPosition"
+                       required
+                       />
+                    <div *ngIf="registrationForm.get('adminPosition')?.touched && registrationForm.get('adminPosition')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('adminPosition')?.errors?.['required']">
+                       Position title is required.
+                       </small>
+                    </div>
+                 </div>
+                 <div class="col-md-6 mb-3">
+                    <label for="adminSalutation" class="form-label">Salutation<span class="text-danger">*</span></label>
+                    <select
+                       id="adminSalutation"
+                       class="form-select"
+                       formControlName="adminSalutation"
+                       required
+                       >
+                       <option value="" disabled selected>-- Please Select --</option>
+                       <option value="mr">Mr.</option>
+                       <option value="ms">Ms.</option>
+                       <option value="dr">Dr.</option>
+                       <!-- Add other salutation options if needed -->
+                    </select>
+                    <div *ngIf="registrationForm.get('adminSalutation')?.touched && registrationForm.get('adminSalutation')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('adminSalutation')?.errors?.['required']">
+                       Salutation is required.
+                       </small>
+                    </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-6 mb-3">
+                    <label for="adminFirstName" class="form-label">First Name<span class="text-danger">*</span></label>
+                    <input
+                       id="adminFirstName"
+                       type="text"
+                       class="form-control"
+                       placeholder="Enter first name"
+                       formControlName="adminFirstName"
+                       required
+                       />
+                    <div *ngIf="registrationForm.get('adminFirstName')?.touched && registrationForm.get('adminFirstName')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('adminFirstName')?.errors?.['required']">
+                       First name is required.
+                       </small>
+                    </div>
+                 </div>
+                 <div class="col-md-6 mb-3">
+                    <label for="adminLastName" class="form-label">Last Name<span class="text-danger">*</span></label>
+                    <input
+                       id="adminLastName"
+                       type="text"
+                       class="form-control"
+                       placeholder="Enter last name"
+                       formControlName="adminLastName"
+                       required
+                       />
+                    <div *ngIf="registrationForm.get('adminLastName')?.touched && registrationForm.get('adminLastName')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('adminLastName')?.errors?.['required']">
+                       Last name is required.
+                       </small>
+                    </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-6 mb-3">
+                    <label for="adminEmail" class="form-label">Email<span class="text-danger">*</span></label>
+                    <input
+                       id="adminEmail"
+                       type="email"
+                       class="form-control"
+                       placeholder="Enter email"
+                       formControlName="adminEmail"
+                       required
+                       />
+                    <div *ngIf="registrationForm.get('adminEmail')?.touched && registrationForm.get('adminEmail')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('adminEmail')?.errors?.['required']">
+                       Email is required.
+                       </small>
+                       <small class="text-danger" *ngIf="registrationForm.get('adminEmail')?.errors?.['email']">
+                       Please enter a valid email address.
+                       </small>
+                    </div>
+                 </div>
+                 <div class="col-md-6 mb-3">
+                    <label for="adminPhone" class="form-label">Phone</label>
+                    <input
+                       id="adminPhone"
+                       type="text"
+                       class="form-control"
+                       placeholder="Enter phone number"
+                       formControlName="adminPhone"
+                       />
+                    <div *ngIf="registrationForm.get('adminPhone')?.touched && registrationForm.get('adminPhone')?.invalid">
+                       <small class="text-danger" *ngIf="registrationForm.get('adminPhone')?.errors?.['required']">
+                       Phone number is required.
+                       </small>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <!-- Financial Contact -->
+           <div class="col-12">
+              <h5 class="mb-3">Financial Contact</h5>
+              <div class="row">
+                 <!-- Finance Officer Position -->
+                 <div class="col-md-6 mb-3">
+                    <label for="financePosition" class="form-label">Finance Officer Position<span class="text-danger">*</span></label>
+                    <input id="financePosition" formControlName="financePosition" type="text" class="form-control" placeholder="Enter finance officer position" required />
+                    <div *ngIf="registrationForm.get('financePosition')?.touched && registrationForm.get('financePosition')?.hasError('required')">
+                       <small class="text-danger">Finance Officer Position is required.</small>
+                    </div>
+                 </div>
+                 <!-- Finance Officer First Name -->
+                 <div class="col-md-6 mb-3">
+                    <label for="financeFirstName" class="form-label">First Name<span class="text-danger">*</span></label>
+                    <input id="financeFirstName" formControlName="financeFirstName" type="text" class="form-control" placeholder="Enter first name" required />
+                    <div *ngIf="registrationForm.get('financeFirstName')?.touched && registrationForm.get('financeFirstName')?.hasError('required')">
+                       <small class="text-danger">First Name is required.</small>
+                    </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <!-- Finance Officer Last Name -->
+                 <div class="col-md-6 mb-3">
+                    <label for="financeLastName" class="form-label">Last Name<span class="text-danger">*</span></label>
+                    <input id="financeLastName" formControlName="financeLastName" type="text" class="form-control" placeholder="Enter last name" required />
+                    <div *ngIf="registrationForm.get('financeLastName')?.touched && registrationForm.get('financeLastName')?.hasError('required')">
+                       <small class="text-danger">Last Name is required.</small>
+                    </div>
+                 </div>
+                 <!-- Finance Officer Email -->
+                 <div class="col-md-6 mb-3">
+                    <label for="financeEmail" class="form-label">Email<span class="text-danger">*</span></label>
+                    <input id="financeEmail" formControlName="financeEmail" type="email" class="form-control" placeholder="Enter finance email" required />
+                    <div *ngIf="registrationForm.get('financeEmail')?.touched && registrationForm.get('financeEmail')?.hasError('required')">
+                       <small class="text-danger">Email is required.</small>
+                    </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <!-- Finance Officer Contact Number -->
+                 <div class="col-md-6 mb-3">
+                    <label for="financePhone" class="form-label">Contact Number</label>
+                    <input id="financePhone" formControlName="financePhone" type="text" class="form-control" placeholder="Enter phone number" />
+                 </div>
+              </div>
+              <!-- Bank Details for Settlement -->
+              <h6 class="mt-4">Bank Details (for the settlement of funds received)</h6>
+              <div class="row">
+                 <!-- Bank Name for Settlement -->
+                 <div class="col-md-6 mb-3">
+                    <label for="settlementBankName" class="form-label">Bank Name<span class="text-danger">*</span></label>
+                    <input id="settlementBankName" formControlName="settlementBankName" type="text" class="form-control" placeholder="Enter bank name" required />
+                    <div *ngIf="registrationForm.get('settlementBankName')?.touched && registrationForm.get('settlementBankName')?.hasError('required')">
+                       <small class="text-danger">Bank Name is required.</small>
+                    </div>
+                 </div>
+                 <!-- Banking Account Number for Settlement -->
+                 <div class="col-md-6 mb-3">
+                    <label for="settlementAccountNumber" class="form-label">Banking Account Number<span class="text-danger">*</span></label>
+                    <input id="settlementAccountNumber" formControlName="settlementAccountNumber" type="text" class="form-control" placeholder="Enter account number" required />
+                    <div *ngIf="registrationForm.get('settlementAccountNumber')?.touched && registrationForm.get('settlementAccountNumber')?.hasError('required')">
+                       <small class="text-danger">Account Number is required.</small>
+                    </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <!-- Attach Bank Statement for Settlement -->
+                 <div class="col-md-6 mb-3">
+                    <label for="settlementBankStatement" class="form-label">Attach your Bank Statement</label>
+                    <input
+                       id="settlementBankStatement"
+                       formControlName="settlementBankStatement"
+                       type="file"
+                       class="form-control"
+                       accept="application/pdf,image/*"
+                       (change)="onFileSelected($event)"
+                       required
+                       />
+                    <!-- Validation Messages -->
+                    <div *ngIf="registrationForm.get('settlementBankStatement')?.touched">
+                       <small *ngIf="registrationForm.get('settlementBankStatement')?.hasError('required')" class="text-danger">
+                       Bank statement is required.
+                       </small>
+                       <small *ngIf="registrationForm.get('settlementBankStatement')?.hasError('invalidFileType')" class="text-danger">
+                       Please upload a valid PDF or image file.
+                       </small>
+                    </div>
+                    <!-- Preview Section -->
+                    <div *ngIf="filePreview" class="mt-3">
+                       <h5>File Preview:</h5>
+                       <div *ngIf="filePreview.type.startsWith('image')">
+                          <img [src]="filePreview.src" alt="File Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px;" />
+                       </div>
+                       <div *ngIf="filePreview.type === 'application/pdf'">
+                          <embed [src]="filePreview.src" type="application/pdf" width="100%" height="500px" />
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <!-- Bank Details for Payments to GivingToHelp -->
+              <h6 class="mt-4">Bank Details (for payments to GivingToHelp)</h6>
+              <!-- Same as Bank Details for Settlement Checkbox -->
+              <div class="form-check col-md-6 mb-3">
+                 <input id="sameAsAbove" formControlName="sameAsAbove" class="form-check-input" type="checkbox" (change)="onSameAsAboveChange()"  [disabled]="!registrationForm.get('settlementBankName')?.valid || !registrationForm.get('settlementAccountNumber')?.valid"
+                 />
+                 <label class="form-check-label" for="sameAsAbove">Same as above</label>
+              </div>
+              <div class="row">
+                 <!-- Bank Name for Payments -->
+                 <div class="col-md-6 mb-3">
+                    <label for="paymentBankName" class="form-label">Bank Name<span class="text-danger">*</span></label>
+                    <input id="paymentBankName" formControlName="paymentBankName" type="text" class="form-control" placeholder="Enter bank name" required />
+                    <div *ngIf="registrationForm.get('paymentBankName')?.touched && registrationForm.get('paymentBankName')?.hasError('required')">
+                       <small class="text-danger">Bank Name is required.</small>
+                    </div>
+                 </div>
+                 <!-- Banking Account Number for Payments -->
+                 <div class="col-md-6 mb-3">
+                    <label for="paymentAccountNumber" class="form-label">Banking Account Number<span class="text-danger">*</span></label>
+                    <input id="paymentAccountNumber" formControlName="paymentAccountNumber" type="text" class="form-control" placeholder="Enter account number" required/>
+                    <div *ngIf="registrationForm.get('paymentAccountNumber')?.touched && registrationForm.get('paymentAccountNumber')?.hasError('required')">
+                       <small class="text-danger">Account Number is required.</small>
+                    </div>
+                 </div>
+              </div>
+              <div class="row mb-5">
+                 <!-- Attach Bank Statement for Payments -->
+                 <div class="col-md-6">
+                    <label for="paymentBankStatement" class="form-label">Attach your Bank Statement</label>
+                    <input
+                       id="paymentBankStatement"
+                       formControlName="paymentBankStatement"
+                       type="file"
+                       class="form-control"
+                       accept="application/pdf,image/*"
+                       (change)="onFileSelectedPayment($event)"
+                       />
+                    <!-- Validation Messages -->
+                    <div *ngIf="registrationForm.get('paymentBankStatement')?.touched">
+                       <small *ngIf="registrationForm.get('paymentBankStatement')?.hasError('required')" class="text-danger">
+                       Bank statement is required.
+                       </small>
+                       <small *ngIf="registrationForm.get('paymentBankStatement')?.hasError('invalidFileType')" class="text-danger">
+                       Please upload a valid PDF or image file.
+                       </small>
+                    </div>
+                 </div>
+                 <div *ngIf="filePreviewPayment" class="mt-3">
+                    <h5>File Preview (Payments):</h5>
+                    <div *ngIf="filePreviewPayment.type.startsWith('image')">
+                       <img
+                          [src]="filePreviewPayment.src"
+                          alt="File Preview"
+                          class="img-thumbnail"
+                          style="max-width: 200px; max-height: 200px;"
+                          />
+                    </div>
+                    <div *ngIf="filePreviewPayment.type === 'application/pdf'">
+                       <embed [src]="filePreviewPayment.src" type="application/pdf" width="100%" height="500px" />
+                    </div>
+                 </div>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="terms" formControlName="terms" required>
+                <label class="form-check-label" for="terms">
+                  I agree to the 
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-primary" style="text-decoration: none;">GivingToHelp terms and conditions</a>
+                </label>
+              </div>
+           </div>
+        </div>
+        <!-- Submission Buttons -->
+        <div class="mt-4">
+           <button type="submit" class="btn btn-outline-primary me-2">Submit</button>
+           <button type="button" class="btn btn-outline-secondary">Cancel</button>
+        </div>
+        </form>
+     </div>
+  </div>
+</section>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Add your terms and conditions text here -->
+        <p>
+          These are the terms and conditions for using GivingToHelp. Please read them carefully. By agreeing, you accept all the provisions stated here.
+        </p>
+        <ul>
+          <li>You must comply with all rules and regulations.</li>
+          <li>Personal information will be handled as per our privacy policy.</li>
+          <li>Donations are final and non-refundable unless specified otherwise.</li>
+          <li>GivingToHelp is not responsible for misuse of funds by third parties.</li>
+        </ul>
+        <!-- More content as needed -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

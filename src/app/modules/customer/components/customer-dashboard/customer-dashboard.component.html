@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <!-- Page Header -->
+    <div class="text-center mb-4">
+      <h1 class="display-6">Available Cars</h1>
+      <p class="lead">Explore our collection of cars with details.</p>
+    </div>
+  
+    <!-- Loading Spinner -->
+    <div *ngIf="!cars.length" class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Loading cars...</p>
+    </div>
+  
+    <!-- Cars List Section -->
+    <div *ngIf="cars.length">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Loop through cars and display each car in a card -->
+        <div *ngFor="let car of cars" class="col">
+          <div class="card h-100 shadow-sm">
+            <!-- Car Image -->
+            <img
+              [src]="getCarImage(car.returnImg)"
+              class="card-img-top"
+              alt="{{ car.name }}"
+            />
+            <!-- Car Details -->
+            <div class="card-body">
+              <h5 class="card-title">{{ car.name || 'Unknown Car' }}</h5>
+              <p class="card-text">
+                <strong>Brand:</strong> {{ car.brand || 'N/A' }}<br />
+                <strong>Transmission:</strong> {{ car.transmission || 'N/A' }}<br />
+                <strong>Type:</strong> {{ car.type || 'Not Specified' }}
+              </p>
+            </div>
+            <!-- Footer -->
+            <div class="card-footer text-end">
+              <button class="btn btn-primary btn-sm">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- No Data Alert -->
+    <div *ngIf="cars.length === 0" class="alert alert-warning text-center mt-4">
+      <strong>No cars available!</strong> Please check back later.
+    </div>
+  </div>
+  

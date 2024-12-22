@@ -1,0 +1,89 @@
+<section class="bg-light py-5">
+  <div class="container px-5">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-md-6 col-lg-6">
+        <div class="text-center my-5">
+          <div *ngIf="successMessage" class="alert alert-success mt-4" role="alert">
+            {{ successMessage }}
+          </div>
+          
+        </div>
+
+        <!-- Login Card -->
+        <div class="card shadow-sm mb-4 p-4">
+          <form [formGroup]="loginForm" >
+          
+          
+            
+            <!-- Email Field -->
+            <div class="mb-3">
+              <h2 class="display-6 text-center">Login</h2>
+              <p class="lead mb-4 text-center">Enter your credentials</p>
+              <label for="email" class="form-label">Email</label>
+              <input id="email" formControlName="email" type="email" class="form-control" placeholder="Email" />
+              <!-- Validation Error for Email -->
+              <div *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors?.['required']" class="text-danger">
+                Email is required
+              </div>
+              <div *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors?.['email']" class="text-danger">
+                Please enter a valid email
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input id="password" formControlName="password" type="password" class="form-control" placeholder="Password" />
+              <!-- Validation Error for Password -->
+              <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']" class="text-danger">
+                Password is required
+              </div>
+            </div>
+
+        
+            <!-- Submit Button -->
+            <a type="submit" class="btn btn-outline-primary w-100 mt-4" (click)="login()">Sign in</a>
+
+
+            <!-- Forgot Password Link -->
+            <div class="text-center mt-3">
+              <a href="/forgot-password" class="text-decoration-none">Forgot password?</a>
+            </div>
+          </form>
+        </div>
+<!-- User Registration Section as an Outlined Card -->
+<div class="card border-success mb-3">
+  <div class="card-header text-center" style="font-size: 1.3rem; font-weight: bold; text-transform: uppercase; color: #28a745;">Register as an Individual</div>
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 1.25rem;">Required if you want to</h5>
+    <ul class="list-group mb-3">
+      <li class="list-group-item">Keep track of your donations</li>
+      <li class="list-group-item">Event ticket purchases</li>
+      <li class="list-group-item">Fundraise for a cause</li>
+    </ul>
+    
+    <a routerLink="/user-registration" class="btn btn-outline-success w-100">Register as Individual</a>
+  </div>
+</div>
+
+<!-- Organizer Registration Section as an Outlined Card -->
+<div class="card border-dark mb-3">
+  <div class="card-header text-center" style="font-size: 1.3rem; font-weight: bold; text-transform: uppercase; color: #343a40;">Register as an Organization</div>
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 1.25rem;">Required if you want to</h5>
+    <ul class="list-group mb-3">
+      <li class="list-group-item">Create a mini web page</li>
+      <li class="list-group-item">Create donation pages</li>
+      <li class="list-group-item">Create events</li>
+    </ul>
+   
+    <a routerLink="/organizer-registration" class="btn btn-outline-dark w-100">Register as Organization</a>
+  </div>
+</div>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
