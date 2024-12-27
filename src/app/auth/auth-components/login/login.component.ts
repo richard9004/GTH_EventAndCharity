@@ -51,6 +51,8 @@ export class LoginComponent {
            if(StorageService.isAdminLoggedIn()){
             this.router.navigateByUrl('/admin/dashboard');
            }else if(StorageService.isUserLoggedIn()){
+            this.router.navigateByUrl('/user/dashboard');
+           }else if(StorageService.isOrganizerLoggedIn()){
             this.router.navigateByUrl('/organizers/dashboard');
            }else{
               this.message = "Bad Credentials";

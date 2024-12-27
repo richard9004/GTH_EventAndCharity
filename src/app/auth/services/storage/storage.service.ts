@@ -50,6 +50,14 @@ export class StorageService {
     return role === "USER";
   }
 
+  static isOrganizerLoggedIn(): boolean{
+    if(this.getToken()==null) return false;
+    const role: string = this.getUserRole();
+    return role === "ORGANIZER";
+  }
+
+  
+
   static hasToken(): boolean{
     if(this.getToken()==null) return false;
     return true;
