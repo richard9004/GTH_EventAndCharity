@@ -1,7 +1,118 @@
-<section class="bg-light py-5"> 
-    <div class="container px-5">
-      <div class="row gx-5 justify-content-center">
-       <h2>Organizers Dashboard</h2>
+<section class="bg-light py-5">
+  <div class="container px-5">
+    <!-- Dashboard Heading -->
+    <div class="row gx-5 justify-content-center mb-4">
+      <h3 class="text-center fw-bold">Organizer's Dashboard Insights</h3>
+    </div>
+
+    <!-- Key Statistics Cards -->
+    <div class="row gx-4 gy-4 mb-5">
+      <!-- Total Events -->
+      <div class="col-md-3">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Total Events</h5>
+            <p class="card-text display-6 text-primary">120</p>
+          </div>
+        </div>
+      </div>
+      <!-- Active Events -->
+      <div class="col-md-3">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Active Events</h5>
+            <p class="card-text display-6 text-success">45</p>
+          </div>
+        </div>
+      </div>
+      <!-- Closed Events -->
+      <div class="col-md-3">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Closed Events</h5>
+            <p class="card-text display-6 text-secondary">75</p>
+          </div>
+        </div>
+      </div>
+      <!-- Total Tickets -->
+      <div class="col-md-3">
+        <div class="card text-center shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Total Tickets</h5>
+            <p class="card-text display-6 text-warning">3400</p>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+
+    <!-- Section Title: Chart Insights -->
+    <div class="row gx-5 mb-4">
+      <h4 class="col-12 text-center">Chart Insights</h4>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="row gx-5">
+
+      <!-- Events Overview -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title text-center">Events Overview</h5>
+            <canvas id="eventsOverviewChart" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Tickets Sold Over Time -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title text-center">Total Tickets Sold Over Time</h5>
+            <canvas id="totalTicketsSoldChart" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tickets Sold Per Event -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title text-center">Tickets Sold Per Event</h5>
+            <canvas id="ticketsPerEventChart" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sponsors Participation -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sponsors Per Event</h5>
+            <canvas id="sponsorsPerEventChart" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Sponsors Added Over Time -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title text-center">Total Sponsors Added Over Time</h5>
+            <canvas id="totalSponsorsOverTimeChart" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fundraisers Contributions -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title text-center">Fundraisers Contributions</h5>
+            <canvas id="fundraisersDonationsChart" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

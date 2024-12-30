@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 const TOKEN = "token";
 const USER = "user";
@@ -9,6 +10,7 @@ const USER = "user";
 })
 export class StorageService {
   
+  static loggedInSubject$ = new BehaviorSubject<boolean>(false);
 
 
   constructor() { }

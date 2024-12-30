@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanMatchFn } from '@angular/router';
 
-import { authenticateChildrenGuard } from './authenticate-children.guard';
+import { organizerGuard } from './organizer.guard';
 
-describe('authenticateChildrenGuard', () => {
+describe('organizerGuard', () => {
   const executeGuard: CanMatchFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => authenticateChildrenGuard(...guardParameters));
+      TestBed.runInInjectionContext(() => organizerGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

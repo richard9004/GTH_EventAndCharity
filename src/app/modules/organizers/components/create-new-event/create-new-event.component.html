@@ -1,0 +1,208 @@
+<section class="bg-light py-5">
+    <div class="container px-5">
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <!-- Master Details Form Heading -->
+                <h4 class="card-title mb-4" style="font-size: 1.5rem; font-weight: 600;">Master Details</h4>
+
+                <!-- Form Start -->
+                <form [formGroup]="createEventForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <!-- Title -->
+                        <div class="col-md-6 mb-3">
+                            <label for="event_title" class="form-label">Title*</label>
+                            <input type="text" class="form-control" id="event_title" formControlName="event_title" placeholder="Enter event title" required>
+                            <div *ngIf="createEventForm.get('event_title')?.hasError('required') && createEventForm.get('event_title')?.touched" class="text-danger">
+                                Title is required.
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="col-md-3 mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <div class="d-flex align-items-center">
+                                <input 
+                                    type="checkbox" 
+                                    class="form-check-input me-2" 
+                                    id="remaining_tickets" 
+                                    formControlName="remaining_tickets"
+                                />
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="location" 
+                                    formControlName="location" 
+                                    placeholder="Event location"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Map Visibility -->
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Location Map</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="location_map" formControlName="location_map">
+                                <label class="form-check-label" for="location_map">Map shown on event page</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Start Date/Time -->
+                        <div class="col-md-6 mb-3">
+                            <label for="start_datetime" class="form-label">Start Date/Time*</label>
+                            <input type="datetime-local" class="form-control" id="start_datetime" formControlName="start_datetime" required>
+                            <div *ngIf="createEventForm.get('start_datetime')?.hasError('required') && createEventForm.get('start_datetime')?.touched" class="text-danger">
+                                Start date/time is required.
+                            </div>
+                        </div>
+
+                        <!-- End Date/Time -->
+                        <div class="col-md-6 mb-3">
+                            <label for="end_datetime" class="form-label">End Date/Time*</label>
+                            <input type="datetime-local" class="form-control" id="end_datetime" formControlName="end_datetime" required>
+                            <div *ngIf="createEventForm.get('end_datetime')?.hasError('required') && createEventForm.get('end_datetime')?.touched" class="text-danger">
+                                End date/time is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Event Description -->
+                        <div class="col-md-6 mb-3">
+                            <label for="event_description" class="form-label">Event Description*</label>
+                            <textarea class="form-control" id="event_description" formControlName="event_description" rows="3" placeholder="Enter event description" required></textarea>
+                            <div *ngIf="createEventForm.get('event_description')?.hasError('required') && createEventForm.get('event_description')?.touched" class="text-danger">
+                                Event description is required.
+                            </div>
+                        </div>
+
+                        <!-- Banner Image -->
+                        <div class="col-md-6 mb-3">
+                            <label for="banner_image" class="form-label">Banner Image* (Recommended size 1140x434)</label>
+                            <input type="file" class="form-control" id="banner_image" formControlName="banner_image" accept="image/*" required>
+                            <div *ngIf="createEventForm.get('banner_image')?.hasError('required') && createEventForm.get('banner_image')?.touched" class="text-danger">
+                                Banner image is required.
+                            </div>
+                            <small class="form-text text-muted">No file selected</small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Organization Description -->
+                        <div class="col-md-6 mb-3">
+                            <label for="organization_description" class="form-label">Organization Description*</label>
+                            <textarea class="form-control" id="organization_description" formControlName="organization_description" rows="3" required placeholder="Enter organization description"></textarea>
+                            <div *ngIf="createEventForm.get('organization_description')?.hasError('required') && createEventForm.get('organization_description')?.touched" class="text-danger">
+                                Organization description is required.
+                            </div>
+                        </div>
+
+                          <!-- Receipt Text In Email -->
+                          <div class="col-md-6 mb-3">
+                            <label for="receipt_text_email" class="form-label">Receipt Text In Email</label>
+                            <textarea class="form-control" id="receipt_text_email" formControlName="receipt_text_email" rows="3" placeholder="Receipt text that will be sent in the email"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      
+
+                        <!-- Ticket Terms & Conditions -->
+                        <div class="col-md-6 mb-3">
+                            <label for="ticket_terms" class="form-label">Ticket Terms & Conditions</label>
+                            <textarea class="form-control" id="ticket_terms" formControlName="ticket_terms" rows="3" placeholder="Enter ticket terms and conditions"></textarea>
+                        </div>
+
+                            <!-- Event Category -->
+                            <div class="col-md-6 mb-3">
+                                <label for="event_category" class="form-label">Event Category*</label>
+                                <select class="form-select" id="event_category" formControlName="event_category" required>
+                                    <option value="">--- Please Select ---</option>
+                                    <option value="1">Category 1</option>
+                                    <option value="2">Category 2</option>
+                                    <option value="3">Category 3</option>
+                                </select>
+                                <div *ngIf="createEventForm.get('event_category')?.hasError('required') && createEventForm.get('event_category')?.touched" class="text-danger">
+                                    Event category is required.
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                    
+
+                          <!-- Private and Public Page -->
+                          <div class="col-md-6 mb-3">
+                            <label class="form-label">Privacy</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="private_page" formControlName="private_page">
+                                <label class="form-check-label" for="private_page">Private Page</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="public_page" formControlName="public_page">
+                                <label class="form-check-label" for="public_page">Public Page</label>
+                            </div>
+                        </div>
+
+                          <!-- Sponsors Signup -->
+                          <div class="col-md-6 mb-3">
+                            <label class="form-label">Sponsors Signup</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="sponsors_signup" formControlName="sponsors_signup">
+                                <label class="form-check-label" for="sponsors_signup">Show button for users to contact you to become a sponsor</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy, Sponsor, and Checkbox Fields -->
+                    <div class="row">
+                      
+
+                      
+
+                          <!-- Default Donation Receipt Text -->
+                          <div class="col-md-6 mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="default_donation_receipt" formControlName="default_donation_receipt">
+                                <label class="form-check-label" for="default_donation_receipt">Default Donation Receipt Text</label>
+                            </div>
+                            <div *ngIf="createEventForm.get('default_donation_receipt')?.value">
+                                <label for="donation_receipt_text" class="form-label">Donation Receipt Text*</label>
+                                <textarea 
+                                    class="form-control" 
+                                    id="donation_receipt_text" 
+                                    formControlName="donation_receipt_text" 
+                                    rows="3" 
+                                    [required]="createEventForm.get('default_donation_receipt')?.value" 
+                                    placeholder="Enter donation receipt text">
+                                </textarea>
+                                <div *ngIf="createEventForm.get('donation_receipt_text')?.hasError('required') && createEventForm.get('donation_receipt_text')?.touched" class="text-danger">
+                                    Donation receipt text is required if the default option is selected.
+                                </div>
+                            </div>
+                        </div>
+
+                          <!-- Special Instructions -->
+                          <div class="col-md-6 mb-3">
+                            <label for="special_instructions" class="form-label">Special Instructions</label>
+                            <textarea class="form-control" id="special_instructions" formControlName="special_instructions" rows="3" placeholder="Enter any special instructions" required></textarea>
+                            <div *ngIf="createEventForm.get('special_instructions')?.hasError('required') && createEventForm.get('special_instructions')?.touched" class="text-danger">
+                                Special Instructions are required.
+                            </div>
+                        </div>
+                    </div>
+
+                  
+                  
+                    <!-- Submit Button -->
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,29 +1,60 @@
- <!-- Navigation-->
- <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-    <div class="container px-5">
-        <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Start Bootstrap</span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/giving-to-cause">Giving to Cause</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/giving-to-fundraiser">Giving to Fundraiser</a></li>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+  <div class="container px-5">
+    <!-- Brand on the left -->
+    <!-- <a class="navbar-brand" href="/home"><span class="fw-bolder text-primary">Start Bootstrap</span></a> -->
+<!-- Brand on the left -->
+<a class="navbar-brand" routerLink="/home">
+  <img src="assets/gth_l.png" alt="Logo" class="img-fluid" style="height: 50px;">
+</a>
 
-                  <!-- Conditional Organizer Dropdown -->
-        <!-- <li *ngIf="isOrganizerLoggedIn" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="organizerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Organizer Dashboard
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="organizerDropdown">
-              <li><a class="dropdown-item" routerLink="/create-event">Create New Event</a></li>
-              <li><a class="dropdown-item" routerLink="/manage-events">Manage Events</a></li>
-              <li><a class="dropdown-item" routerLink="/manage-tickets">Manage Tickets</a></li>
-              <li><a class="dropdown-item" routerLink="/sponsorship-requests">Sponsorship Requests</a></li>
-              <li><a class="dropdown-item" routerLink="/donation-reports">Donation Reports</a></li>
-              <li><a class="dropdown-item" routerLink="/approve-fundraisers">Approve Fundraisers</a></li>
-            </ul>
-          </li> -->
-            </ul>
-        </div>
+    <!-- Navbar toggle button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items in the center -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+        <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/giving-to-cause">Giving to Cause</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/giving-to-fundraiser">Giving to Fundraiser</a></li>
+
+        <!-- Conditional Organizer Dropdown -->
+        <li *ngIf="isOrganizerLoggedIn" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="organizerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Organizer
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="organizerDropdown">
+            <li><a class="dropdown-item" routerLink="/organizers/dashboard">Dashboard</a></li>
+            <li><a class="dropdown-item" routerLink="/organizers/create-new-event">Create New Event</a></li>
+            <li><a class="dropdown-item" routerLink="/manage-events">Manage Events</a></li>
+            <li><a class="dropdown-item" routerLink="/manage-tickets">Manage Tickets</a></li>
+            <li><a class="dropdown-item" routerLink="/sponsorship-requests">Sponsorship Requests</a></li>
+            <li><a class="dropdown-item" routerLink="/donation-reports">Donation Reports</a></li>
+            <li><a class="dropdown-item" routerLink="/approve-fundraisers">Approve Fundraisers</a></li>
+          </ul>
+        </li>
+
+        <!-- Show Sign In Button if not logged in -->
+        <li *ngIf="!isOrganizerLoggedIn && !isUserLoggedIn" class="nav-item">
+          <a class="nav-link" routerLink="/login">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </a>
+        </li>
+         <!-- Show User Profile if logged in -->
+         <li *ngIf="isOrganizerLoggedIn || isUserLoggedIn" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user"></i> {{ userName }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            <li><a class="dropdown-item" (click)="onSignOutClick()">Sign Out</a></li>
+          </ul>
+        </li>
+
+        
+      </ul>
     </div>
+  </div>
 </nav>

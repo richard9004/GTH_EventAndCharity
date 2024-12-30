@@ -1,0 +1,24 @@
+<div [formGroup]="subEventFormGroup">
+    <div class="mb-3">
+      <label for="sub_event_title" class="form-label">Sub-event Title</label>
+      <input id="sub_event_title" type="text" class="form-control" formControlName="sub_event_title" required />
+    </div>
+    
+    <div class="mb-3">
+      <label for="sub_event_start_datetime" class="form-label">Start Date/Time</label>
+      <input id="sub_event_start_datetime" type="datetime-local" class="form-control" formControlName="sub_event_start_datetime" required />
+    </div>
+  
+    <div class="mb-3">
+      <label for="sub_event_end_datetime" class="form-label">End Date/Time</label>
+      <input id="sub_event_end_datetime" type="datetime-local" class="form-control" formControlName="sub_event_end_datetime" required />
+    </div>
+  
+    <div class="mb-3">
+      <label for="sub_event_description" class="form-label">Description</label>
+      <textarea id="sub_event_description" class="form-control" formControlName="sub_event_description" rows="3" required></textarea>
+    </div>
+  
+    <button type="button" class="btn btn-danger" (click)="onRemove()">Remove Sub-Event</button>
+  </div>
+  

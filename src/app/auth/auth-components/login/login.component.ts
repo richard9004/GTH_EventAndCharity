@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common'
 import { AuthService } from '../../services/auth/auth.service';
@@ -14,7 +14,7 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent {
   successMessage: string | null = null;
-  constructor(private serv: AuthService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private serv: AuthService, private router: Router, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -53,6 +53,8 @@ export class LoginComponent {
            }else if(StorageService.isUserLoggedIn()){
             this.router.navigateByUrl('/user/dashboard');
            }else if(StorageService.isOrganizerLoggedIn()){
+            StorageService.loggedInSubject$.next(true);
+            this.cdr.detectChanges();
             this.router.navigateByUrl('/organizers/dashboard');
            }else{
               this.message = "Bad Credentials";

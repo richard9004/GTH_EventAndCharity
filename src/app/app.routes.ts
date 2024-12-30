@@ -7,34 +7,36 @@ import { HomeComponent } from './components/home/home.component';
 import { UserRegistrationComponent } from './auth/auth-components/user-registration/user-registration.component';
 import { OrganizerRegistrationComponent } from './auth/auth-components/organizer-registration/organizer-registration.component';
 import { OrganizationThankYouComponent } from './auth/auth-components/organization-thank-you/organization-thank-you.component';
-import { authenticateUserGuard } from '../guard/authenticate-user.guard';
-import { authenticateChildrenGuard } from '../guard/authenticate-children.guard';
+
+import { preventAccessIfLoggedInGuardGuard } from '../guard/prevent-access-if-logged-in-guard.guard';
+import { userGuard } from '../guard/user.guard';
+import { organizerGuard } from '../guard/organizer.guard';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: SignupComponent },
-  { path: 'user-registration', component: UserRegistrationComponent },
+  { path: 'login', component: LoginComponent, canActivate:[preventAccessIfLoggedInGuardGuard] },
+  { path: 'register', component: SignupComponent, canActivate:[preventAccessIfLoggedInGuardGuard] },
+  { path: 'user-registration', component: UserRegistrationComponent, canActivate:[preventAccessIfLoggedInGuardGuard] },
   { path: 'organizer-thank-you', component: OrganizationThankYouComponent },
-  { path: 'organizer-registration', component: OrganizerRegistrationComponent },
+  { path: 'organizer-registration', component: OrganizerRegistrationComponent, canActivate:[preventAccessIfLoggedInGuardGuard] },
   { 
     path: 'admin', 
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule), 
-    canMatch: [authenticateChildrenGuard] 
+    canMatch: [] 
   },
   { 
     path: 'customer', 
     loadChildren: () => import('./modules/customer/customer.module').then(m => m.CustomerModule), 
-    canMatch: [authenticateChildrenGuard] 
+    canMatch: [] 
   },
   { 
     path: 'user', 
     loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule), 
-    canMatch: [authenticateChildrenGuard] 
+    canMatch: [userGuard] 
   },
   { 
     path: 'organizers', 
     loadChildren: () => import('./modules/organizers/organizers.module').then(m => m.OrganizersModule), 
-    canMatch: [authenticateChildrenGuard] 
+    canMatch: [organizerGuard] 
   },
 
   { path: 'giving-to-fundraiser', component: GivingtofundraiserComponent },
