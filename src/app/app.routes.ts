@@ -23,11 +23,11 @@ export const routes: Routes = [
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule), 
     canMatch: [] 
   },
-  { 
-    path: 'customer', 
-    loadChildren: () => import('./modules/customer/customer.module').then(m => m.CustomerModule), 
-    canMatch: [] 
-  },
+  // { 
+  //   path: 'customer', 
+  //   loadChildren: () => import('./modules/customer/customer.module').then(m => m.CustomerModule), 
+  //   canMatch: [] 
+  // },
   { 
     path: 'user', 
     loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule), 
