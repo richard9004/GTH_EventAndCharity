@@ -42,4 +42,10 @@ export const routes: Routes = [
   { path: 'giving-to-fundraiser', component: GivingtofundraiserComponent },
   { path: 'giving-to-cause', component: GivingtocauseComponent },
   { path: 'home', component: HomeComponent },
+   // Make HomeComponent the default page
+   { path: '', component: HomeComponent },
+   // Optional route for '/home' to also load HomeComponent
+   { path: 'home', component: HomeComponent },
+   // Wildcard route for handling unknown paths
+   { path: '**', redirectTo: '' },
 ];

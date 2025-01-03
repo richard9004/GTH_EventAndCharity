@@ -20,7 +20,7 @@ export class AppComponent {
   
   constructor(private router: Router){}
 
-  title = 'seller_car';
+  title = 'GivingToHelp';
 
   // isAdminLoggedIn:boolean = StorageService.isAdminLoggedIn();
 
