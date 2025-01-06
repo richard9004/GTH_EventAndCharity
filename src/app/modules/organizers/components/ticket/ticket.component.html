@@ -1,0 +1,108 @@
+<form [formGroup]="ticketForm" class="container mb-3 ticket-form">
+    <div class="row g-3 align-items-center small-font">
+  
+      <!-- Ticket Name -->
+      <div class="col-md-4">
+        <label for="ticketName" class="form-label">Ticket Name</label>
+        <input
+          type="text"
+          id="ticketName"
+          formControlName="title"
+          class="form-control form-control-sm"
+          placeholder="Ticket Name"
+        />
+        <div *ngIf="ticketForm.get('title')?.invalid && ticketForm.get('title')?.touched" class="text-danger small">
+          Ticket name is required.
+        </div>
+      </div>
+  
+      <!-- Ticket Type -->
+      <div class="col-md-4">
+        <label class="form-label">Ticket Type</label>
+        <div *ngIf="type === 'free'">
+          <p class="form-text">Free Ticket: This is a free ticket.</p>
+        </div>
+        <div *ngIf="type === 'donation'">
+          <p class="form-text">Donation Ticket: This is a donation ticket.</p>
+        </div>
+        <div *ngIf="type === 'paid'">
+          <input
+            type="number"
+            formControlName="price"
+            placeholder="Enter Price"
+            class="form-control form-control-sm"
+          />
+          <div *ngIf="ticketForm.get('price')?.invalid && ticketForm.get('price')?.touched" class="text-danger small">
+            Price is required for paid tickets and must be non-negative.
+          </div>
+        </div>
+      </div>
+  
+      <!-- Quantity -->
+      <div class="col-md-4">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input
+          type="number"
+          id="quantity"
+          formControlName="quantity"
+          class="form-control form-control-sm"
+          placeholder="Quantity"
+        />
+        <div *ngIf="ticketForm.get('quantity')?.invalid && ticketForm.get('quantity')?.touched" class="text-danger small">
+          Quantity is required.
+        </div>
+      </div>
+  
+      <!-- Sale End Date -->
+      <div class="col-md-4">
+        <label for="saleEndDate" class="form-label">Sale End Date</label>
+        <input
+          type="date"
+          id="saleEndDate"
+          formControlName="saleEndDate"
+          class="form-control form-control-sm"
+        />
+        <div *ngIf="ticketForm.get('saleEndDate')?.invalid && ticketForm.get('saleEndDate')?.touched" class="text-danger small">
+          Sale end date is required.
+        </div>
+      </div>
+  
+      <!-- Min Ticket Count -->
+      <div class="col-md-4">
+        <label for="minTicketCount" class="form-label">Min Ticket Count</label>
+        <input
+          type="number"
+          id="minTicketCount"
+          formControlName="minTicketCount"
+          class="form-control form-control-sm"
+          placeholder="Min Ticket Count"
+        />
+        <div *ngIf="ticketForm.get('minTicketCount')?.invalid && ticketForm.get('minTicketCount')?.touched" class="text-danger small">
+          Minimum ticket count is required.
+        </div>
+      </div>
+  
+      <!-- Max Ticket Count -->
+      <div class="col-md-4">
+        <label for="maxTicketCount" class="form-label">Max Ticket Count</label>
+        <input
+          type="number"
+          id="maxTicketCount"
+          formControlName="maxTicketCount"
+          class="form-control form-control-sm"
+          placeholder="Max Ticket Count"
+        />
+        <div *ngIf="ticketForm.get('maxTicketCount')?.invalid && ticketForm.get('maxTicketCount')?.touched" class="text-danger small">
+          Maximum ticket count is required.
+        </div>
+      </div>
+  
+      <!-- Remove Ticket Button -->
+      <div class="col-12 text-start">
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="onRemoveTicket()" title="Remove Ticket">
+          <i class="fas fa-trash"></i> Remove Ticket
+        </button>
+      </div>
+    </div>
+  </form>
+  

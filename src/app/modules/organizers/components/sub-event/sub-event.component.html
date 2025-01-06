@@ -1,24 +1,157 @@
-<div [formGroup]="subEventFormGroup">
-    <div class="mb-3">
-      <label for="sub_event_title" class="form-label">Sub-event Title</label>
-      <input id="sub_event_title" type="text" class="form-control" formControlName="sub_event_title" required />
+<!-- Event Schedule Section Header -->
+<div class="event-schedule-header mt-5">
+  <h2> Sub Event {{ subEventIndex }}</h2> <!-- Main section title -->
+</div>
+
+<!-- Sub Event Form -->
+<div [formGroup]="subEvent" class="sub-event-form">
+  <h3 class="sub-event-title">Event Schedule</h3> <!-- Display Sub Event 1, Sub Event 2, etc. -->
+
+  <!-- Row 1: Title and Location Fields in One Row -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <!-- Title Field -->
+      <label for="subEventTitle" class="form-label">Title</label>
+      <input type="text" id="subEventTitle" class="form-control" formControlName="title">
+      <div *ngIf="subEvent.get('title')?.invalid && subEvent.get('title')?.touched" class="text-danger">
+        Sub-event title is required.
+      </div>
     </div>
-    
-    <div class="mb-3">
-      <label for="sub_event_start_datetime" class="form-label">Start Date/Time</label>
-      <input id="sub_event_start_datetime" type="datetime-local" class="form-control" formControlName="sub_event_start_datetime" required />
+    <div class="col-md-6">
+      <!-- Location Field -->
+      <label for="subEventLocation" class="form-label">Location</label>
+      <input type="text" id="subEventLocation" class="form-control" formControlName="location">
+      <div *ngIf="subEvent.get('location')?.invalid && subEvent.get('location')?.touched" class="text-danger">
+        Sub-event location is required.
+      </div>
     </div>
-  
-    <div class="mb-3">
-      <label for="sub_event_end_datetime" class="form-label">End Date/Time</label>
-      <input id="sub_event_end_datetime" type="datetime-local" class="form-control" formControlName="sub_event_end_datetime" required />
-    </div>
-  
-    <div class="mb-3">
-      <label for="sub_event_description" class="form-label">Description</label>
-      <textarea id="sub_event_description" class="form-control" formControlName="sub_event_description" rows="3" required></textarea>
-    </div>
-  
-    <button type="button" class="btn btn-danger" (click)="onRemove()">Remove Sub-Event</button>
   </div>
+
+  <!-- Row 2: Start Date and End Date Fields in One Row -->
+  <div class="row mb-1">
+    <div class="col-md-6">
+      <!-- Start Date Field -->
+      <label for="subEventStartDate" class="form-label">Start Date</label>
+      <input type="date" id="subEventStartDate" class="form-control" formControlName="startDate">
+      <div *ngIf="subEvent.get('startDate')?.invalid && subEvent.get('startDate')?.touched" class="text-danger">
+        Start date is required.
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- End Date Field -->
+      <label for="subEventEndDate" class="form-label">End Date</label>
+      <input type="date" id="subEventEndDate" class="form-control" formControlName="endDate">
+      <div *ngIf="subEvent.get('endDate')?.invalid && subEvent.get('endDate')?.touched" class="text-danger">
+        End date is required.
+      </div>
+    </div>
+  </div>
+
+  <!-- Description Field -->
+  <div class="mb-3">
+    <label for="subEventDescription" class="form-label">Description</label>
+    <textarea id="subEventDescription" class="form-control" formControlName="description"></textarea>
+    <div *ngIf="subEvent.get('description')?.invalid && subEvent.get('description')?.touched" class="text-danger">
+      Event description is required.
+    </div>
+  </div>
+ 
+  <h3 class="sub-event-title mt-5">Create Tickets</h3> <!-- Display Sub Event 1, Sub Event 2, etc. -->
+
   
+  
+ 
+  
+<!-- Ticket Form Section -->
+<div formArrayName="tickets">
+  <div *ngFor="let ticket of tickets.controls; let i = index" [formGroupName]="i">
+    <!-- Pass each ticket (FormGroup) directly to the ticket component -->
+    <app-ticket 
+      [ticketForm]="ticket" 
+      [type]="ticket.get('type').value" 
+      (removeTicket)="removeTicket(i)">
+    </app-ticket>
+  </div>
+</div>
+
+<!-- Add Ticket Buttons -->
+<div class="mt-3 mb-5">
+  <button type="button" class="btn btn-outline-primary btn-sm me-2" (click)="addFreeTicket()">Add Free Ticket</button>
+  <button type="button" class="btn btn-outline-success btn-sm me-2" (click)="addPaidTicket()">Add Paid Ticket</button>
+  <button type="button" class="btn btn-outline-warning btn-sm me-2" (click)="addDonationTicket()">Add Donation Ticket</button>
+</div>
+
+<h3 class="sub-event-title mt-5">Add Sponsors</h3> <!-- Display Sub Event 1, Sub Event 2, etc. -->
+
+
+<app-sponsors (sponsorAdded)="addSponsor($event)"></app-sponsors>
+
+<div class="d-flex flex-wrap">
+  <div *ngFor="let sponsor of sponsors.controls; let i = index" class="m-2 d-flex align-items-center justify-content-between bg-light p-3 rounded shadow-sm" style="width: 300px;">
+    <!-- Sponsor Text -->
+    <p class="m-0 flex-grow-1" style="font-size: 16px; font-weight: bold;">{{ sponsor.value.text }}</p>  <!-- Assuming 'text' holds the sponsor's name/text -->
+
+    <!-- Remove Button -->
+    <button 
+      type="button" 
+      class="btn btn-danger btn-sm" 
+      (click)="removeSponsor(i)"
+      style="padding: 5px 10px; font-size: 14px;">
+      <i class="bi bi-x"></i> <!-- Bootstrap Icon -->
+    </button>
+  </div>
+</div>
+
+<h3 class="sub-event-title mt-5">Fundraiser</h3>
+<!-- Fundraiser Checkboxes -->
+<div class="mb-4">
+  <div class="form-check">
+    <input 
+      class="form-check-input" 
+      type="checkbox" 
+      id="fundraiserAllowed" 
+      formControlName="fundraiserAllowed">
+    <label class="form-check-label" for="fundraiserAllowed">
+      Fundraiser Allowed
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input 
+      class="form-check-input" 
+      type="checkbox" 
+      id="verifyFundraiser" 
+      formControlName="verifyFundraiser">
+    <label class="form-check-label" for="verifyFundraiser">
+      Verify Fundraiser
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input 
+      class="form-check-input" 
+      type="checkbox" 
+      id="becomeFundraiser" 
+      formControlName="becomeFundraiser">
+    <label class="form-check-label" for="becomeFundraiser">
+      Become Fundraiser
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input 
+      class="form-check-input" 
+      type="checkbox" 
+      id="showFundraiser" 
+      formControlName="showFundraiser">
+    <label class="form-check-label" for="showFundraiser">
+      Show Fundraiser
+    </label>
+  </div>
+</div>
+<!-- Remove Button -->
+<button (click)="remove()" class="btn btn-outline-danger btn-sm remove-button">Remove Sub-event</button>
+
+</div>
+
+

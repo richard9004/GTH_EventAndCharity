@@ -1,0 +1,58 @@
+<form class="container mt-4 sponsor-form mb-3" [formGroup]="sponsorForm" (ngSubmit)="onSubmit()">
+    <div class="row g-3">
+      <!-- Text to printed sponsors -->
+      <div class="col-md-6">
+        <label for="sponsorText" class="form-label">Text to be printed above sponsor section</label>
+        <textarea
+          id="sponsorText"
+          formControlName="text"
+          class="form-control form-control-sm"
+          placeholder="Enter text to display above sponsor section"
+          rows="3"
+        ></textarea>
+        <!-- Validation Error -->
+        <div *ngIf="sponsorForm.get('text')?.invalid && (sponsorForm.get('text')?.touched || sponsorForm.get('text')?.dirty)" class="text-danger mt-1">
+          <small *ngIf="sponsorForm.get('text')?.errors?.['required']">Text is required.</small>
+        </div>
+      </div>
+  
+      <!-- Sponsor Image -->
+      <div class="col-md-6">
+        <label for="sponsorImage" class="form-label">Image (Recommended size 236x116)</label>
+        <input
+          type="file"
+          id="sponsorImage"
+          formControlName="image"
+          class="form-control form-control-sm"
+          accept="image/*"
+        />
+        <!-- Validation Error -->
+        <div *ngIf="sponsorForm.get('image')?.invalid && (sponsorForm.get('image')?.touched || sponsorForm.get('image')?.dirty)" class="text-danger mt-1">
+          <small *ngIf="sponsorForm.get('image')?.errors?.['required']">Image is required.</small>
+        </div>
+      </div>
+  
+      <!-- Sponsor Hyperlink -->
+      <div class="col-md-6">
+        <label for="sponsorLink" class="form-label">Hyperlink</label>
+        <input
+          type="url"
+          id="sponsorLink"
+          formControlName="link"
+          class="form-control form-control-sm"
+          placeholder="Enter Sponsor URL"
+        />
+        <!-- Validation Error -->
+        <div *ngIf="sponsorForm.get('link')?.invalid && (sponsorForm.get('link')?.touched || sponsorForm.get('link')?.dirty)" class="text-danger mt-1">
+          <small *ngIf="sponsorForm.get('link')?.errors?.['required']">Hyperlink is required.</small>
+          <small *ngIf="sponsorForm.get('link')?.errors?.['pattern']">Invalid URL format. Please provide a valid link.</small>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="col-12 text-first">
+        <button type="submit" class="btn btn-outline-primary btn-sm" [disabled]="sponsorForm.invalid">Submit Sponsor</button>
+      </div>
+    </div>
+  </form>
+  

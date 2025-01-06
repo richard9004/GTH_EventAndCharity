@@ -1,0 +1,47 @@
+/* Input and Textarea Fields */
+.form-control,
+.form-select {
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 12px 15px;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Apply smaller font size to all form inputs and labels */
+.small-font {
+    font-size: 0.85rem; /* Adjust to your preference */
+  }
+  
+  .small-font .form-control-sm {
+    font-size: 0.85rem; /* Match input text size with overall font */
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .small-font .form-label {
+    font-size: 0.75rem; /* Smaller labels */
+  }
+  
+  .small {
+    font-size: 0.75rem;
+  }
+  
+  /* Reduce height for quantity, min, and max ticket inputs */
+  .small-font #quantity,
+  .small-font #minTicketCount,
+  .small-font #maxTicketCount {
+    width: auto;
+    max-width: 100px; /* Adjust as needed */
+  }
+  
+  .ticket-form{
+    background-color: #f8f9fa;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 8px;
+  }

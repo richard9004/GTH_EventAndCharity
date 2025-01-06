@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl, FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router';
+import { SubEventComponent } from '../sub-event/sub-event.component';
+
 @Component({
   selector: 'app-create-new-event',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, SubEventComponent],
   templateUrl: './create-new-event.component.html',
   styleUrl: './create-new-event.component.css'
 })
@@ -13,6 +15,9 @@ import { Router } from '@angular/router';
 export class CreateNewEventComponent {
 
    constructor(private router:Router,  private fb: FormBuilder){} 
+
+   private subEventCounter = 1;
+   
 
    createEventForm : FormGroup
    ngOnInit() {
@@ -54,31 +59,46 @@ export class CreateNewEventComponent {
     });
 }
 
-  // Getter for sub-events
-  get subEvents() {
-    return (this.createEventForm.get('subEvents') as FormArray);
-  }
+get subEvents(): FormArray {
+  return this.createEventForm.get('subEvents') as FormArray;
+}
 
-   // Add a new sub-event
-   addSubEvent() {
-    const subEventGroup = this.fb.group({
-      sub_event_title: new FormControl(null, Validators.required),
-      sub_event_start_datetime: new FormControl(null, Validators.required),
-      sub_event_end_datetime: new FormControl(null, Validators.required),
-      sub_event_description: new FormControl(null, Validators.required)
-    });
-    this.subEvents.push(subEventGroup);
-  }
+addSubEvent() {
+  const subEvent = this.fb.group({
+    title: ['', Validators.required],
+    location: ['', Validators.required],
+    startDate: ['', Validators.required],
+    endDate: ['', Validators.required],
+    description: ['', Validators.required],
+    fundraiserAllowed: [false],  // Default value for checkbox
+    verifyFundraiser: [false],   // Default value for checkbox
+    becomeFundraiser: [false],   // Default value for checkbox
+    showFundraiser: [false],      // Default value for checkbox
+    tickets: this.fb.array([]),  // Initialize an empty tickets FormArray
+    sponsors: this.fb.array([]),
+  });
 
-  // Remove a sub-event
-  removeSubEvent(index: number) {
-    this.subEvents.removeAt(index);
-  }
+  this.subEvents.push(subEvent); // Add the new sub-event to the FormArray
+}
+
+removeSubEvent(index: number) {
+  this.subEvents.removeAt(index);
+}
 
  // Method to mark all form controls as touched
- markAllAsTouched() {
-  Object.values(this.createEventForm.controls).forEach(control => {
-    control.markAsTouched();
+//  markAllAsTouched() {
+//   Object.values(this.createEventForm.controls).forEach(control => {
+//     control.markAsTouched();
+//   });
+// }
+
+markAllAsTouched() {
+  // Mark parent form controls as touched
+  this.createEventForm.markAllAsTouched();
+
+  // Now, iterate over sub-events (FormArray) and mark their controls as touched
+  this.subEvents.controls.forEach(subEvent => {
+    subEvent.markAllAsTouched();
   });
 }
 
@@ -86,6 +106,9 @@ export class CreateNewEventComponent {
 
 
 onSubmit(){
+   // Get the main event data
+   const eventData = this.createEventForm.value;
+   console.log(eventData);
 // Mark all controls as touched to trigger validation
 this.markAllAsTouched();
 }

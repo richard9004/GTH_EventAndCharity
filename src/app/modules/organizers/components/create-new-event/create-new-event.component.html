@@ -194,12 +194,24 @@
                         </div>
                     </div>
 
+                    <!-- Sub-Events -->
+
+                    <div *ngFor="let subEvent of subEvents.controls; let i = index">
+                        <app-sub-event 
+                          [subEvent]="subEvent" 
+                          [subEventIndex]="i + 1" 
+                          (removeSubEvent)="removeSubEvent(i)">
+                        </app-sub-event>
+                      </div>
+                      
+
+                 <!-- Submit and Add Sub-Event Buttons -->
+                 <div class="mb-3 mt-3 d-flex">
+                    <button type="button" (click)="addSubEvent()" class="btn btn-outline-primary me-2">Add Sub-Event</button>
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
+                  </div>
                   
-                  
-                    <!-- Submit Button -->
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary w-100">Submit</button>
-                    </div>
+  
                 </form>
             </div>
         </div>
