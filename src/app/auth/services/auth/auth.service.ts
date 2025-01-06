@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 
 
 
-const BASE_URL = "http://localhost:8080/"; 
-//const BASE_URL = "https://gth-backend.onrender.com/"; 
+//const BASE_URL = "http://localhost:8080/"; 
+const BASE_URL = "https://gth-backend.onrender.com/"; 
 
 
 @Injectable({
